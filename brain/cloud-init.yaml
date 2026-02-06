@@ -1,0 +1,11 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - curl
+  - git
+  - nodejs
+  - npm
+runcmd:
+  - sed -i 's/#Port 22/Port 18822/' /etc/ssh/sshd_config
+  - systemctl restart ssh
+  - curl -sL https://raw.githubusercontent.com/openclaw/openclaw/main/scripts/install.sh | bash

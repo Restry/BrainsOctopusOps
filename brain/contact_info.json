@@ -1,0 +1,54 @@
+{
+  "contactAdmin": {
+    "addressMailing": {
+      "address1": "One Microsoft Way",
+      "city": "Redmond",
+      "country": "US",
+      "postalCode": "98052",
+      "state": "WA"
+    },
+    "email": "admin@eaips.net",
+    "nameFirst": "Octopus",
+    "nameLast": "Ops",
+    "phone": "+1.4258828080"
+  },
+  "contactBilling": {
+    "addressMailing": {
+      "address1": "One Microsoft Way",
+      "city": "Redmond",
+      "country": "US",
+      "postalCode": "98052",
+      "state": "WA"
+    },
+    "email": "admin@eaips.net",
+    "nameFirst": "Octopus",
+    "nameLast": "Ops",
+    "phone": "+1.4258828080"
+  },
+  "contactRegistrant": {
+    "addressMailing": {
+      "address1": "One Microsoft Way",
+      "city": "Redmond",
+      "country": "US",
+      "postalCode": "98052",
+      "state": "WA"
+    },
+    "email": "admin@eaips.net",
+    "nameFirst": "Octopus",
+    "nameLast": "Ops",
+    "phone": "+1.4258828080"
+  },
+  "contactTech": {
+    "addressMailing": {
+      "address1": "One Microsoft Way",
+      "city": "Redmond",
+      "country": "US",
+      "postalCode": "98052",
+      "state": "WA"
+    },
+    "email": "admin@eaips.net",
+    "nameFirst": "Octopus",
+    "nameLast": "Ops",
+    "phone": "+1.4258828080"
+  }
+}

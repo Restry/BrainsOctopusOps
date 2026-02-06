@@ -1,0 +1,86 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "logicAppName": {
+            "type": "string",
+            "defaultValue": "OctopusOps-Inbound-Relay"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "eastus"
+        },
+        "mattermostWebhookUrl": {
+            "type": "string",
+            "defaultValue": "https://mm.dora.restry.cn/hooks/is7byij16tnh5niwi8nrohry7w"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2019-05-01",
+            "name": "[parameters('logicAppName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "actions": {
+                        "HTTP_Forward_to_Mattermost": {
+                            "type": "Http",
+                            "inputs": {
+                                "method": "POST",
+                                "uri": "[parameters('mattermostWebhookUrl')]",
+                                "body": {
+                                    "text": "### New Inbound Email\n**From:** @{triggerBody()?['subject']}\n**Subject:** @{triggerBody()?['data']?['subject']}\n**Content:** @{triggerBody()?['data']?['contentPreview']}"
+                                }
+                            },
+                            "runAfter": {}
+                        },
+                        "Response": {
+                            "type": "Response",
+                            "kind": "Http",
+                            "inputs": {
+                                "statusCode": 200
+                            },
+                            "runAfter": {
+                                "HTTP_Forward_to_Mattermost": [
+                                    "Succeeded"
+                                ]
+                            }
+                        }
+                    },
+                    "contentVersion": "1.0.0.0",
+                    "outputs": {},
+                    "triggers": {
+                        "manual": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "inputs": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "from": { "type": "string" },
+                                                "to": { "type": "string" },
+                                                "subject": { "type": "string" },
+                                                "contentPreview": { "type": "string" }
+                                            }
+                                        },
+                                        "subject": { "type": "string" },
+                                        "eventType": { "type": "string" },
+                                        "eventTime": { "type": "string" },
+                                        "dataVersion": { "type": "string" },
+                                        "metadataVersion": { "type": "string" }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

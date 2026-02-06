@@ -1,0 +1,14 @@
+{
+  "Name": "Octopus-Builder-NoDelete",
+  "IsCustom": true,
+  "Description": "Full access except delete operations for builder automation",
+  "Actions": [
+    "*"
+  ],
+  "NotActions": [
+    "*/delete"
+  ],
+  "AssignableScopes": [
+    "/subscriptions/6706af37-2340-4489-91fd-d9e67cb108f3"
+  ]
+}
