@@ -42,7 +42,16 @@ chmod +x setup.sh
 ```
 *This will replace any existing `~/.openclaw/workspace-*` folders with symlinks to this repo.*
 
-### 3. Restart OpenClaw
+### 3. Environment Configuration
+Copy the example environment file to the Brain's directory and fill in your credentials:
+
+```bash
+cp .env.example brain/.env
+nano brain/.env
+```
+*Fill in your 126 Mail (IMAP/SMTP) credentials and Azure keys.*
+
+### 4. Restart OpenClaw
 Restart the gateway to load the new identities:
 ```bash
 openclaw gateway restart
